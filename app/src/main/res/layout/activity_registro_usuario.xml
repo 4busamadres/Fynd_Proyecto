@@ -18,7 +18,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:text="Nombre:"
-            app:layout_constraintEnd_toStartOf="@+id/txt_registro_nombre"
+            app:layout_constraintEnd_toStartOf="@+id/txt_editar_nombre"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView16" />
@@ -29,7 +29,7 @@
             android:layout_height="46dp"
             android:layout_marginTop="100dp"
             android:text="Apellido:"
-            app:layout_constraintEnd_toStartOf="@+id/txt_registro_apellido"
+            app:layout_constraintEnd_toStartOf="@+id/txt_editar_apellido"
             app:layout_constraintHorizontal_bias="0.28"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView16" />
@@ -40,7 +40,7 @@
             android:layout_height="46dp"
             android:layout_marginTop="176dp"
             android:text="Correo:"
-            app:layout_constraintEnd_toStartOf="@+id/txt_registro_correo"
+            app:layout_constraintEnd_toStartOf="@+id/txt_editar_correo"
             app:layout_constraintHorizontal_bias="0.156"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView16" />
@@ -51,13 +51,13 @@
             android:layout_height="46dp"
             android:layout_marginTop="252dp"
             android:text="Clave:"
-            app:layout_constraintEnd_toStartOf="@+id/txt_registro_clave"
+            app:layout_constraintEnd_toStartOf="@+id/txt_editar_clave"
             app:layout_constraintHorizontal_bias="0.28"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
         <EditText
-            android:id="@+id/txt_registro_nombre"
+            android:id="@+id/txt_editar_nombre"
             android:layout_width="210dp"
             android:layout_height="46dp"
             android:layout_marginTop="32dp"
@@ -90,7 +90,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
         <EditText
-            android:id="@+id/txt_registro_fecha"
+            android:id="@+id/txt_editar_fecha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="416dp"
@@ -106,7 +106,7 @@
             android:layout_height="46dp"
             android:layout_marginTop="408dp"
             android:text="Nacimiento:"
-            app:layout_constraintEnd_toStartOf="@+id/txt_registro_fecha"
+            app:layout_constraintEnd_toStartOf="@+id/txt_editar_fecha"
             app:layout_constraintHorizontal_bias="0.242"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView16" />
@@ -132,7 +132,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
         <EditText
-            android:id="@+id/txt_registro_clave"
+            android:id="@+id/txt_editar_clave"
             android:layout_width="210dp"
             android:layout_height="46dp"
             android:layout_marginTop="252dp"
@@ -143,7 +143,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
         <EditText
-            android:id="@+id/txt_registro_correo"
+            android:id="@+id/txt_editar_correo"
             android:layout_width="210dp"
             android:layout_height="46dp"
             android:layout_marginTop="176dp"
@@ -154,7 +154,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
         <EditText
-            android:id="@+id/txt_registro_apellido"
+            android:id="@+id/txt_editar_apellido"
             android:layout_width="210dp"
             android:layout_height="46dp"
             android:layout_marginTop="100dp"

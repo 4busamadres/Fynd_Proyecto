@@ -70,7 +70,7 @@
             android:id="@+id/btn_menu_Editar"
             android:layout_width="85dp"
             android:layout_height="78dp"
-            android:onClick="abrir_registro_usuario"
+            android:onClick="abrir_editar_usuario"
             app:icon="@android:drawable/ic_menu_edit"
             app:iconGravity="textStart"
             app:iconPadding="0dp"

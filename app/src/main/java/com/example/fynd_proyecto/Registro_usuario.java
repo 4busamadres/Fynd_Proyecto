@@ -27,11 +27,11 @@ public class Registro_usuario extends AppCompatActivity {
         setContentView(R.layout.activity_registro_usuario);
 
         db = FirebaseFirestore.getInstance();
-        txt_nombre=findViewById(R.id.txt_registro_nombre);
-        txt_apellido=findViewById(R.id.txt_registro_apellido);
-        txt_correo=findViewById(R.id.txt_registro_correo);
-        txt_clave=findViewById(R.id.txt_registro_clave);
-        txt_nacimiento=findViewById(R.id.txt_registro_fecha);
+        txt_nombre=findViewById(R.id.txt_editar_nombre);
+        txt_apellido=findViewById(R.id.txt_editar_apellido);
+        txt_correo=findViewById(R.id.txt_editar_correo);
+        txt_clave=findViewById(R.id.txt_editar_clave);
+        txt_nacimiento=findViewById(R.id.txt_editar_fecha);
     }
     public void mostrarAlerta(String titulo,String mensaje){
         AlertDialog.Builder alerta=new AlertDialog.Builder(this);
