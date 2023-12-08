@@ -1,74 +1,75 @@
 package com.example.fynd_proyecto;
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.fynd_proyecto.Models.Parada;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 
 public class Menu_parada extends AppCompatActivity {
     private FirebaseFirestore db;
-    private ListView lv_paradas;
-    private ParadaAdapter paradaAdapter;
-    private List<Map<String, Object>> todasLasParadas;
+    private ListView lv_listParada;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_parada);
+        setContentView(R.layout.activity_main);
 
-        db= FirebaseFirestore.getInstance();
-        lv_paradas=findViewById(R.id.lv_paradas);
+        FirebaseApp.initializeApp(this);
+        db=FirebaseFirestore.getInstance();
 
-        todasLasParadas = new ArrayList<>();
-        paradaAdapter = new ParadaAdapter(this, todasLasParadas);
-        lv_paradas.setAdapter(paradaAdapter);
-
-
-        registrarParada();
-        EditText txtBuscar = findViewById(R.id.txt_parada_Destino);
-        Button btnBuscar = findViewById(R.id.btn_parada_buscar);
-
-
-        btnBuscar.setOnClickListener(new View.OnClickListener() {
+        lv_listParada=findViewById(R.id.lv_paradas);
+        cargarParadas();
+    }
+    public void cargarParadas()
+    {
+        ArrayList<Parada>listaParada=new ArrayList<>();
+        ArrayList<String>listaNomParada=new ArrayList<>();
+        db.collection("Parada").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onClick(View view) {
-                buscarParadas(txtBuscar.getText().toString());
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful())
+                {
+                    for (QueryDocumentSnapshot document : task.getResult())
+                    {
+                        String NomParada = document.getData().get("nomParada").toString();
+
+                        Parada pa=new Parada(NomParada);
+                        listaParada.add(pa);
+                        listaNomParada.add(NomParada);
+                    }
+                    ArrayAdapter<String>adapter=new ArrayAdapter<>(Menu_parada.this, android.R.layout.simple_list_item_1,listaNomParada);
+                    lv_listParada.setAdapter(adapter);
+                }else {
+                    mostrarAlerta("Error","No se puede cargar la lista de paradas");
+                }
+
             }
         });
     }
-    public void registrarParada()
-    {
-        Map<String, Object> map = new HashMap<>();
-        map.put("nomParada", "Mendoza / Rengo");
-
-        // Añadir la parada al ArrayList y notificar al adaptador
-        todasLasParadas.add(map);
-        paradaAdapter.notifyDataSetChanged();
-
-    }
-    private void buscarParadas(String query) {
-        List<Map<String, Object>> paradasFiltradas = new ArrayList<>();
-        for (Map<String, Object> parada : todasLasParadas) {
-            String nomParada = parada.get("nomParada").toString().toLowerCase();
-            if (nomParada.contains(query.toLowerCase())) {
-                paradasFiltradas.add(parada);
-            }
-        }
-        paradaAdapter.clear();
-        paradaAdapter.addAll(paradasFiltradas);
-        paradaAdapter.notifyDataSetChanged();
+    public void mostrarAlerta(String titulo, String mensaje) {
+        AlertDialog.Builder alerta = new AlertDialog.Builder(this);
+        alerta.setTitle(titulo);
+        alerta.setMessage(mensaje);
+        alerta.setPositiveButton("Aceptar", null);
+        AlertDialog dialogo = alerta.create();
+        dialogo.show();
     }
 
     public void volver_menu(View v){
