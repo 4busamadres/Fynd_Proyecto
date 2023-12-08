@@ -37,8 +37,8 @@ public class Menu extends AppCompatActivity {
         Intent abrir_soporte=new Intent(Menu.this, Menu_soporte.class);
         startActivity(abrir_soporte);
     }
-    public void abrir_registro_usuario(View v){
-        Intent abrir_registro_usuario=new Intent(Menu.this, Registro_usuario.class);
-        startActivity(abrir_registro_usuario);
+    public void abrir_editar_usuario(View v){
+        Intent abrir_editar_usuario=new Intent(Menu.this, editar_usuario.class);
+        startActivity(abrir_editar_usuario);
     }
 }
